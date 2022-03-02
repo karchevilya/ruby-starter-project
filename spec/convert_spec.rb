@@ -1,25 +1,32 @@
-require './lib/init'
+require './lib/convert'
 
-RSpec.describe Init do
-  $stdin = File.open('./test-data/init_test_data.txt')
-
-  describe '#Init call func name. Some wrong values and choose 3' do
-    subject { Init.new.init_call_func_name }
-    it { is_expected.to eq '3' }
+RSpec.describe Convert do
+  describe '#Meters to miles' do
+    subject { Convert.new(1023.45).meters_to_miles }
+    it { is_expected.to eq 0.636 }
   end
 
-  describe '#Init call func name. Some wrong values and quit' do
-    subject { Init.new.init_call_func_name }
-    it { is_expected.to eq 'q' }
+  describe '#Meters to kilometers' do
+    subject { Convert.new(1023.45).meters_to_kilometers }
+    it { is_expected.to eq 1.023 }
   end
 
-  describe '#Init value. Some wrong values and choose 12.2345' do
-    subject { Init.new.init_value }
-    it { is_expected.to eq '12.2345' }
+  describe '#Kilometers to miles' do
+    subject { Convert.new(1023.45).kilometers_to_miles }
+    it { is_expected.to eq 636.078 }
   end
 
-  describe '#Init value. Some wrong values and quit' do
-    subject { Init.new.init_value }
-    it { is_expected.to eq 'q' }
+  describe '#Kilometers to meters' do
+    subject { Convert.new(1023.45).kilometers_to_meters }
+    it { is_expected.to eq 1_023_450.0 }
+  end
+
+  describe '#Miles to meters' do
+    subject { Convert.new(1023.45).miles_to_meters }
+    it { is_expected.to eq 1_646_731.05 }
+  end
+  describe '#Miles to kilometers' do
+    subject { Convert.new(1023.45).miles_to_kilometers }
+    it { is_expected.to eq 1646.731 }
   end
 end
